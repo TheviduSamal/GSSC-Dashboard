@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #070b14;
+    --panel: #0e1626;
+    --panel2: #131f33;
+    --line: #1e2d45;
+    --text: #e6edf7;
+    --muted: #8499b8;
+    --accent: #2dd4bf;
+    --accent2: #22d3ee;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #243454 transparent;
+  }
+  *::-webkit-scrollbar { width: 8px; height: 8px; }
+  *::-webkit-scrollbar-thumb { background: #243454; border-radius: 99px; }
+  *::-webkit-scrollbar-track { background: transparent; }
+  html, body, #root { height: 100%; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 15% 0%, rgba(45, 212, 191, 0.08), transparent 70%),
+      radial-gradient(ellipse 50% 40% at 100% 100%, rgba(34, 211, 238, 0.06), transparent 70%),
+      var(--bg);
+    color: var(--text);
+    font-family: 'Inter', ui-sans-serif, system-ui, Segoe UI, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  .glass {
+    background: linear-gradient(145deg, rgba(19, 31, 51, 0.85), rgba(14, 22, 38, 0.85));
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--line);
+  }
+  .card {
+    background: linear-gradient(145deg, rgba(19, 31, 51, 0.7), rgba(12, 19, 33, 0.7));
+    border: 1px solid var(--line);
+    border-radius: 16px;
+  }
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--panel2)] px-3.5 py-2 text-sm font-semibold text-[var(--text)] transition-all hover:border-teal-500/50 hover:bg-teal-500/10 active:scale-[0.97] disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply border-transparent bg-gradient-to-r from-teal-400 to-cyan-400 text-slate-900 hover:from-teal-300 hover:to-cyan-300;
+  }
+  .btn-ghost {
+    @apply border-transparent bg-transparent hover:bg-white/5;
+  }
+  .input {
+    @apply rounded-lg border border-[var(--line)] bg-[#0a1120] px-3 py-2 text-sm text-[var(--text)] outline-none transition-all placeholder:text-slate-500 focus:border-teal-400/60 focus:ring-2 focus:ring-teal-400/20;
+  }
+  .stat-card {
+    @apply card relative overflow-hidden p-4 transition-transform hover:scale-[1.02];
+  }
+  .stat-card::after {
+    content: '';
+    @apply pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-20 blur-xl;
+    background: var(--glow, #2dd4bf);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade { animation: fadeIn 0.3s ease both; }
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.pulse-dot { animation: pulseDot 1.5s ease-in-out infinite; }
+
+/* --- අලුතින් එකතු කළ Animated Logo Styles --- */
+@keyframes spinClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(30, 203, 222, 0.6)); }
+  50% { filter: drop-shadow(0 0 20px rgba(30, 203, 222, 0.95)); }
+}
+
+.animate-logo-spin {
+  animation: spinClockwise 12s linear infinite;
+  transform-origin: center;
+}
+
+.animate-logo-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}

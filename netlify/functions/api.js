@@ -106,7 +106,7 @@ async function grafana(route, query, opts) {
   if (!res.ok) return reply(502, {success:false, upstream_status:res.status, error:`Grafana server (${base}/${route}) returned ${res.status}${res.status === 401 ? " - username/password rejected" : ""}: ${txt.slice(0,300)}`});
   return { statusCode: 200, headers, body: txt };
 }
-exports.handler = async (event) => {
+export const handler = async (event) => {
   if (event.httpMethod === "OPTIONS") return {statusCode:204, headers:{...headers,"access-control-allow-origin":"*","access-control-allow-methods":"GET,POST,DELETE,OPTIONS","access-control-allow-headers":"Content-Type,Authorization"},body:""};
   if (!authorized(event)) return reply(401,{success:false,error:"Unauthorized. Check AUTH_USER/AUTH_PASS."});
   const ep = endpoint(event);

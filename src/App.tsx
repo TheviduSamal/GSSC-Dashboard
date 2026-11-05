@@ -15,12 +15,24 @@ import * as PlanoDoubtGroupModule from '@/views/PlanoDoubtGroup';
 import * as DenominatorSheetModule from '@/views/DenominatorSheet';
 import * as StaffRosterModule from '@/views/StaffRoster';
 import * as DoNotWorkModule from '@/views/DoNotWork';
+import * as VerbalWarningModule from '@/views/VerbalWarning';
+
+// Monthly Components
+import * as MonthlyPppaAchievementModule from '@/views/MonthlyPppaAchievement';
+import * as MonthlyProductivityModule from '@/views/MonthlyProductivity';
+import * as MonthlyAccuracyModule from '@/views/MonthlyAccuracy';
 
 const REDoubtGroup = (REDoubtGroupModule as any).REDoubtGroup || (REDoubtGroupModule as any).default || (() => <div className="p-10 text-white">REDoubtGroup Component Not Found</div>);
 const PlanoDoubtGroup = (PlanoDoubtGroupModule as any).PlanoDoubtGroup || (PlanoDoubtGroupModule as any).default || (() => <div className="p-10 text-white">PlanoDoubtGroup Component Not Found</div>);
 const DenominatorSheet = (DenominatorSheetModule as any).DenominatorSheet || (DenominatorSheetModule as any).default || (() => <div className="p-10 text-white">DenominatorSheet Component Not Found</div>);
 const StaffRoster = (StaffRosterModule as any).StaffRoster || (StaffRosterModule as any).default || (() => <div className="p-10 text-white">StaffRoster Component Not Found</div>);
 const DoNotWork = (DoNotWorkModule as any).DoNotWork || (DoNotWorkModule as any).default || (() => <div className="p-10 text-white">DoNotWork Component Not Found</div>);
+const VerbalWarning = (VerbalWarningModule as any).VerbalWarning || (VerbalWarningModule as any).default || (() => <div className="p-10 text-white">VerbalWarning Component Not Found</div>);
+
+// Monthly Components
+const MonthlyPppaAchievement = (MonthlyPppaAchievementModule as any).MonthlyPppaAchievement || (MonthlyPppaAchievementModule as any).default || (() => <div className="p-10 text-white">MonthlyPppaAchievement Component Not Found</div>);
+const MonthlyProductivity = (MonthlyProductivityModule as any).MonthlyProductivity || (MonthlyProductivityModule as any).default || (() => <div className="p-10 text-white">MonthlyProductivity Component Not Found</div>);
+const MonthlyAccuracy = (MonthlyAccuracyModule as any).MonthlyAccuracy || (MonthlyAccuracyModule as any).default || (() => <div className="p-10 text-white">MonthlyAccuracy Component Not Found</div>);
 
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { useDashboard } from '@/hooks/useDashboardData';
@@ -91,6 +103,12 @@ function DashboardContent() {
             {id === 'denominatorSheet' && <DenominatorSheet />}
             {id === 'staffRoster' && <StaffRoster />}
             {id === 'doNotWork' && <DoNotWork />}
+            {id === 'verbalWarning' && <VerbalWarning />}
+
+            {/* Monthly Views - NEW */}
+            {id === 'monthlyPppaAchievement' && <MonthlyPppaAchievement />}
+            {id === 'monthlyProductivity' && <MonthlyProductivity />}
+            {id === 'monthlyAccuracy' && <MonthlyAccuracy />}
 
             {/* Admin Only View */}
             {id === 'users' && isAdmin && <UserManagementView />}

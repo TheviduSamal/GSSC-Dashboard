@@ -1,11 +1,29 @@
 import { useState, useEffect } from 'react';
-import { Clock, Database, LayoutDashboard, LogOut, Menu, TrendingDown, X, Users, AlertCircle, AlertTriangle, FileSpreadsheet, Calendar, UserX } from 'lucide-react';
+import {
+  Clock,
+  Database,
+  LayoutDashboard,
+  LogOut,
+  Menu,
+  TrendingDown,
+  X,
+  Users,
+  AlertCircle,
+  AlertTriangle,
+  FileSpreadsheet,
+  Calendar,
+  UserX,
+  ShieldAlert,
+  Target,
+  Activity,
+  CheckCircle2,
+} from 'lucide-react';
 import { useDashboard } from '@/hooks/useDashboardData';
 import { useAuth } from '@/contexts/AuthContext';
 import { DATASETS } from '@/lib/constants';
 import { db } from '@/lib/firebase';
 import { ref, onValue } from 'firebase/database';
-import { AnimatedLogo } from '@/components/AnimatedLogo'; // <-- අලුත් ලෝගෝ එක import කළා
+import { AnimatedLogo } from '@/components/AnimatedLogo';
 
 const ICONS: Record<string, typeof LayoutDashboard> = {
   hourly: Clock,
@@ -17,7 +35,7 @@ const ICONS: Record<string, typeof LayoutDashboard> = {
 export function Sidebar() {
   const { active, setActive, sidebarOpen, setSidebarOpen } = useDashboard();
   const { logout, user } = useAuth();
-  
+
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
@@ -60,6 +78,13 @@ export function Sidebar() {
     { id: 'denominatorSheet', label: 'Denominator Sheet', title: 'Denominator Sheet', icon: FileSpreadsheet },
     { id: 'staffRoster', label: 'Staff Roster', title: 'Staff Roster', icon: Calendar },
     { id: 'doNotWork', label: 'Do Not Work', title: 'Do Not Work', icon: UserX },
+    { id: 'verbalWarning', label: 'Verbal Warning', title: 'Verbal Warning', icon: ShieldAlert },
+
+    // Monthly Views - NEW
+    { id: 'monthlyPppaAchievement', label: 'Monthly PPPA Achievement', title: 'Monthly PPPA Achievement', icon: Target },
+    { id: 'monthlyProductivity', label: 'Monthly Productivity', title: 'Monthly Productivity', icon: Activity },
+    { id: 'monthlyAccuracy', label: 'Monthly Accuracy', title: 'Monthly Accuracy', icon: CheckCircle2 },
+
     { id: 'users', label: 'User Management', title: 'User Management', icon: Users },
   ];
 
@@ -81,7 +106,7 @@ export function Sidebar() {
           <div className="flex h-12 w-12 shrink-0 items-center justify-center">
             <AnimatedLogo className="h-10 w-10" />
           </div>
-          
+
           <div>
             <div className="text-sm font-bold tracking-tight text-slate-100">Team Leader Dashboard</div>
           </div>
@@ -120,8 +145,8 @@ export function Sidebar() {
 
         <div className="border-t border-[var(--line)] px-3 py-3 space-y-1">
           {user && (
-            <button 
-              onClick={() => logout()} 
+            <button
+              onClick={() => logout()}
               className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-rose-400 transition-colors hover:bg-rose-500/10 hover:text-rose-300"
             >
               <LogOut size={16} className="shrink-0" />
